@@ -8,7 +8,7 @@ import * as matter from 'gray-matter';
 export class MarkdownService {
   async parseMarkdownFile(
     filePath: string,
-  ): Promise<{ html: string; frontmatter: any }> {
+  ): Promise<{ html: string; frontmatter: any; content: string }> {
     const fullPath = path.join(
       process.cwd(),
       'data',
@@ -21,12 +21,13 @@ export class MarkdownService {
     return {
       html: marked(parsedMarkdown.content) as string,
       frontmatter: parsedMarkdown.data,
+      content: parsedMarkdown.content,
     };
   }
 
   async parseNvimMarkdownFileFromOpenWiki(
     filePath: string,
-  ): Promise<{ html: string; frontmatter: any }> {
+  ): Promise<{ html: string; frontmatter: any; content: string }> {
     const fullPath = path.join(
       process.cwd(),
       'data/blog/areas/nvim',
@@ -38,6 +39,7 @@ export class MarkdownService {
     return {
       html: marked(parsedMarkdown.content) as string,
       frontmatter: parsedMarkdown.data,
+      content: parsedMarkdown.content,
     };
   }
 }
