@@ -5,7 +5,7 @@ import * as matter from 'gray-matter';
 import { markedExtended } from 'src/config/marked';
 
 @Injectable()
-export class MarkdownService {
+export class ContentService {
   async parseMarkdownFile(
     filePath: string,
   ): Promise<{ html: string; frontmatter: any; content: string }> {

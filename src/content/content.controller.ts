@@ -1,9 +1,9 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { MarkdownService } from './markdown.service';
+import { ContentService } from './content.service';
 
-@Controller('markdown')
-export class MarkdownController {
-  constructor(private readonly markdownService: MarkdownService) {}
+@Controller('content')
+export class ContentController {
+  constructor(private readonly markdownService: ContentService) {}
 
   @Get(':slug')
   async getMarkdownFile(
