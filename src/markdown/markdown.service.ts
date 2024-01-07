@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import { marked } from 'marked';
 import * as matter from 'gray-matter';
+import { markedExtended } from 'src/config/marked';
 
 @Injectable()
 export class MarkdownService {
@@ -19,7 +19,7 @@ export class MarkdownService {
     const parsedMarkdown = matter(fileContents);
 
     return {
-      html: marked(parsedMarkdown.content) as string,
+      html: markedExtended(parsedMarkdown.content) as string,
       frontmatter: parsedMarkdown.data,
       content: parsedMarkdown.content,
     };
@@ -37,7 +37,7 @@ export class MarkdownService {
     const parsedMarkdown = matter(fileContents);
 
     return {
-      html: marked(parsedMarkdown.content) as string,
+      html: markedExtended(parsedMarkdown.content) as string,
       frontmatter: parsedMarkdown.data,
       content: parsedMarkdown.content,
     };
