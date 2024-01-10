@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ContentController } from './content/content.controller';
 import { ContentService } from './content/content.service';
 import { ConfigModule } from '@nestjs/config';
+import { ContentsService } from './contents/contents.service';
+import { ContentsController } from './contents/contents.controller';
 
 @Module({
   imports: [
@@ -11,7 +13,7 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: '.env.development',
     }),
   ],
-  controllers: [AppController, ContentController],
-  providers: [AppService, ContentService],
+  controllers: [AppController, ContentController, ContentsController],
+  providers: [AppService, ContentService, ContentsService],
 })
 export class AppModule {}
