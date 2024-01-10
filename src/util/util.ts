@@ -9,6 +9,13 @@ type FileData = {
 export const recursiveReadDir = async (entry: string): Promise<FileData[]> => {
   const results: FileData[] = [];
 
+  function addToResult(_fileData: FileData) {
+    const { name } = _fileData;
+    if (name.endsWith('.md') && name !== 'README.md') {
+      results.push(_fileData);
+    }
+  }
+
   async function recursiveDir(dir: string): Promise<void> {
     const _files = await fs.promises.readdir(dir, { withFileTypes: true });
     const files = _files.filter((file) => file.name !== '.git');
@@ -19,7 +26,7 @@ export const recursiveReadDir = async (entry: string): Promise<FileData[]> => {
         await recursiveDir(fullPath);
       } else {
         const fileData = { path: fullPath, name: file.name };
-        results.push(fileData);
+        addToResult(fileData);
       }
     }
   }
