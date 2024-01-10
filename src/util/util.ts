@@ -23,7 +23,11 @@ export const recursiveReadDir = async (
       if (file.isDirectory()) {
         await recursiveDir(fullPath);
       } else {
-        const fileData = { path: fullPath, name: file.name };
+        const fileData = {
+          path: fullPath,
+          name: file.name,
+          slug: file.name.split('.')[0], // 현재는 slug와 파일명이 같다고 가정하기 때문에 확장자만 제거
+        };
         addToResult(fileData);
       }
     }
