@@ -1,15 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { ContentFileData } from 'src/type/content';
 
-type FileData = {
-  path: string;
-  name: string;
-};
+export const recursiveReadDir = async (
+  entry: string,
+): Promise<ContentFileData[]> => {
+  const results: ContentFileData[] = [];
 
-export const recursiveReadDir = async (entry: string): Promise<FileData[]> => {
-  const results: FileData[] = [];
-
-  function addToResult(_fileData: FileData) {
+  function addToResult(_fileData: ContentFileData) {
     const { name } = _fileData;
     if (name.endsWith('.md') && name !== 'README.md') {
       results.push(_fileData);
