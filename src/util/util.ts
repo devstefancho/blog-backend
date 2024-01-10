@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ContentFileData } from 'src/type/content';
+import * as matter from 'gray-matter';
+import { ContentFileData, FrontMatter } from 'src/type/content';
 
 export const recursiveReadDir = async (
   entry: string,
@@ -35,4 +36,10 @@ export const recursiveReadDir = async (
 
   await recursiveDir(entry);
   return results;
+};
+
+export const getFrontMatter = (fullPath: string): FrontMatter => {
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data } = matter(fileContents);
+  return data as FrontMatter;
 };
