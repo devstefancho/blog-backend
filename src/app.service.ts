@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
 import * as path from 'path';
+import { recursiveReadDir } from './util/util';
 
 @Injectable()
 export class AppService {
@@ -8,11 +8,10 @@ export class AppService {
     return 'Hello World!';
   }
 
-  getJsonList(): any {
+  async getJsonList(): Promise<any> {
     try {
-      const filePath = path.join(process.cwd(), 'data/blog_list.json');
-      const fileContents = fs.readFileSync(filePath, 'utf8');
-      return JSON.parse(fileContents);
+      const filePath = path.join(process.cwd(), 'data');
+      return await recursiveReadDir(filePath);
     } catch (error) {
       throw new Error('Unable to read json_list.json');
     }

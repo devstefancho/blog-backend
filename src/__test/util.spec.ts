@@ -21,9 +21,12 @@ afterEach(() => {
 test('should list all files in a directory recursively', async () => {
   const directoryPath = path.join(__dirname, '../../.');
   const expectedFiles = [
-    path.join(directoryPath, 'mock/file1.txt'),
-    path.join(directoryPath, 'mock/file2.txt'),
-    path.join(directoryPath, 'mock/subdir', 'file3.txt'),
+    { path: path.join(directoryPath, 'mock/file1.txt'), name: 'file1.txt' },
+    { path: path.join(directoryPath, 'mock/file2.txt'), name: 'file2.txt' },
+    {
+      path: path.join(directoryPath, 'mock/subdir', 'file3.txt'),
+      name: 'file3.txt',
+    },
   ].sort();
 
   const result = await recursiveReadDir(directoryPath);

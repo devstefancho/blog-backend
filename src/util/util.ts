@@ -1,17 +1,32 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export const recursiveReadDir = async (entry: string): Promise<string[]> => {
-  const results: string[] = [];
+type FileData = {
+  path: string;
+  name: string;
+};
+
+export const recursiveReadDir = async (entry: string): Promise<FileData[]> => {
+  const results: FileData[] = [];
+
+  function addToResult(_fileData: FileData) {
+    const { name } = _fileData;
+    if (name.endsWith('.md') && name !== 'README.md') {
+      results.push(_fileData);
+    }
+  }
 
   async function recursiveDir(dir: string): Promise<void> {
-    const files = await fs.promises.readdir(dir, { withFileTypes: true });
+    const _files = await fs.promises.readdir(dir, { withFileTypes: true });
+    const files = _files.filter((file) => file.name !== '.git');
+
     for (const file of files) {
       const fullPath = path.join(dir, file.name);
       if (file.isDirectory()) {
         await recursiveDir(fullPath);
       } else {
-        results.push(fullPath);
+        const fileData = { path: fullPath, name: file.name };
+        addToResult(fileData);
       }
     }
   }
