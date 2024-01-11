@@ -3,19 +3,12 @@ import { ContentService } from './content.service';
 
 @Controller('content')
 export class ContentController {
-  constructor(private readonly markdownService: ContentService) {}
+  constructor(private readonly contentService: ContentService) {}
 
   @Get(':slug')
-  async getMarkdownFile(
+  async get(
     @Param('slug') slug: string,
   ): Promise<{ html: string; frontmatter: any }> {
-    return this.markdownService.parseMarkdownFile(slug);
-  }
-
-  @Get('nvim/:slug')
-  async getNvimMarkdownFile(
-    @Param('slug') slug: string,
-  ): Promise<{ html: string; frontmatter: any }> {
-    return this.markdownService.parseNvimMarkdownFileFromOpenWiki(slug);
+    return this.contentService.findOne(slug);
   }
 }

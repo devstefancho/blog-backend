@@ -7,39 +7,21 @@ import { recursiveReadDir } from 'src/util/util';
 
 @Injectable()
 export class ContentService {
-  async parseMarkdownFile(
+  async findOne(
     slug: string,
   ): Promise<{ html: string; frontmatter: any; content: string }> {
     const dataPath = path.join(process.cwd(), 'data');
-    const fileList = await recursiveReadDir(dataPath);
-    const matchedFile = fileList.find((file) => file.name === `${slug}.md`);
+    const files = await recursiveReadDir(dataPath);
+    const file = files.find((f) => f.name === `${slug}.md`);
 
-    const fullPath = path.join(matchedFile.path);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const parsedMarkdown = matter(fileContents);
-
-    return {
-      html: markedExtended(parsedMarkdown.content) as string,
-      frontmatter: parsedMarkdown.data,
-      content: parsedMarkdown.content,
-    };
-  }
-
-  async parseNvimMarkdownFileFromOpenWiki(
-    filePath: string,
-  ): Promise<{ html: string; frontmatter: any; content: string }> {
-    const fullPath = path.join(
-      process.cwd(),
-      'data/blog/areas/nvim',
-      `${filePath}.md`,
-    );
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const parsedMarkdown = matter(fileContents);
+    const fullPath = path.join(file.path);
+    const fileData = fs.readFileSync(fullPath, 'utf8');
+    const parsedData = matter(fileData);
 
     return {
-      html: markedExtended(parsedMarkdown.content) as string,
-      frontmatter: parsedMarkdown.data,
-      content: parsedMarkdown.content,
+      html: markedExtended(parsedData.content) as string,
+      frontmatter: parsedData.data,
+      content: parsedData.content,
     };
   }
 }
