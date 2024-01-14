@@ -16,7 +16,7 @@ const renderer = {
   // 코드 블록을 위한 Syntax Highlighting 처리
   code(code: string, language: string) {
     const validLanguage = hljs.getLanguage(language) ? language : 'plaintext';
-    return `<pre><code class="hljs ${validLanguage}">${
+    return `<pre class="hljs"><code class="${validLanguage}">${
       hljs.highlight(code, { language: validLanguage }).value
     }</code></pre>`;
   },
