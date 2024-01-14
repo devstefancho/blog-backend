@@ -26,6 +26,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.9.0",
     "marked": "^11.1.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
