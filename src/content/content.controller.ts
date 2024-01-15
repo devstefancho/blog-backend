@@ -6,7 +6,7 @@ export class ContentController {
   constructor(private readonly contentService: ContentService) {}
 
   @Get(':slug')
-  async get(
+  async findOne(
     @Param('slug') slug: string,
   ): Promise<{ html: string; frontmatter: any }> {
     return this.contentService.findOne(slug);
