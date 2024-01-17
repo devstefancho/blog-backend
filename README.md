@@ -1,4 +1,4 @@
-[![Test](https://github.com/devstefancho/blog-backend/actions/workflows/ci.yml/badge.svg)](https://github.com/devstefancho/blog-backend/actions/workflows/ci.yml)
+[![Test](https://github.com/devstefancho/blog-backend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/devstefancho/blog-backend/actions/workflows/ci.yml)
 
 ## Description
 
