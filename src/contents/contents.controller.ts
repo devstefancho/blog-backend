@@ -7,7 +7,7 @@ export class ContentsController {
   constructor(private readonly contentsService: ContentsService) {}
 
   @Get()
-  get(): Promise<ContentFileData[]> {
+  findAll(): Promise<ContentFileData[]> {
     return this.contentsService.findAll();
   }
 }
