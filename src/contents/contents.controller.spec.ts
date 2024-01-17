@@ -34,7 +34,7 @@ describe('ContentsController', () => {
   it('should return all contents', async () => {
     expect(await contentsController.findAll()).toStrictEqual([
       {
-        html: '<h1>test1</h1>',
+        html: '<h1>test</h1>',
         frontmatter: { title: 'test' },
         content: 'test',
       },
