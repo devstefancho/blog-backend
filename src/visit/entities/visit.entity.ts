@@ -9,7 +9,7 @@ export class Visit {
   userId: number;
 
   @Column()
-  visitTime: Date;
+  visitedAt: Date;
 
   @Column()
   pageId: number;
