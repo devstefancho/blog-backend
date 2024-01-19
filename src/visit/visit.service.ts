@@ -12,7 +12,8 @@ export class VisitService {
     private visitsRepository: Repository<Visit>,
   ) {}
 
-  create(createVisitDto: CreateVisitDto) {
+  async create(createVisitDto: CreateVisitDto) {
+    await this.visitsRepository.save(createVisitDto);
     return 'This action adds a new visit';
   }
 
