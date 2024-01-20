@@ -1,16 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Id, InitialPath, SessionId, VisitedAt } from '../type/visit.type';
 
 @Entity()
 export class Visit {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: Id;
 
   @Column()
-  userId: number;
+  sessionId: SessionId;
+
+  @Column({ type: 'timestamp' })
+  visitedAt: VisitedAt;
 
   @Column()
-  visitedAt: Date;
-
-  @Column()
-  pageId: number;
+  initialPath: InitialPath;
 }

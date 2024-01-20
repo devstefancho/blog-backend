@@ -1,5 +1,7 @@
+import { InitialPath, SessionId, VisitedAt } from '../type/visit.type';
+
 export class CreateVisitDto {
-  userId: number;
-  visitedAt: Date;
-  pageId: number;
+  sessionId: SessionId;
+  visitedAt: VisitedAt;
+  initialPath: InitialPath;
 }
