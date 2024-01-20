@@ -13,8 +13,11 @@ export class VisitService {
   ) {}
 
   async create(createVisitDto: CreateVisitDto) {
-    await this.visitsRepository.save(createVisitDto);
-    return 'This action adds a new visit';
+    const result = await this.visitsRepository.save(createVisitDto);
+    return {
+      success: true,
+      result,
+    };
   }
 
   async count() {
