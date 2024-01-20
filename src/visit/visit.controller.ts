@@ -20,9 +20,10 @@ export class VisitController {
     return this.visitService.create(createVisitDto);
   }
 
-  @Get()
-  findAll() {
-    return this.visitService.findAll();
+  @Get('count')
+  async count() {
+    const count = await this.visitService.count();
+    return { count };
   }
 
   @Get(':id')

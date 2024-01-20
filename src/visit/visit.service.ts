@@ -17,7 +17,7 @@ export class VisitService {
     return 'This action adds a new visit';
   }
 
-  async findAll() {
+  async count() {
     return await this.visitsRepository.count();
   }
 
