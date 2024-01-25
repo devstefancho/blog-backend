@@ -9,12 +9,13 @@ export class ContentsService {
     try {
       const filePath = path.join(process.cwd(), 'data');
       const files = await recursiveReadDir(filePath);
-      return files.map((file) => {
-        return {
+      const publishedFiles = files
+        .map((file) => ({
           ...file,
           frontMatter: getFrontMatter(file.path),
-        };
-      });
+        }))
+        .filter((file) => file.frontMatter.published);
+      return publishedFiles;
     } catch (error) {
       throw new Error('Error while reading contents');
     }
