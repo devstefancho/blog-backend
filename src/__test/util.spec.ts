@@ -1,6 +1,6 @@
 import * as mockFs from 'mock-fs';
 import * as path from 'path';
-import { recursiveReadDir } from 'src/util/util';
+import { recursiveReadDir } from 'src/shared/util/util';
 
 beforeEach(() => {
   mockFs({

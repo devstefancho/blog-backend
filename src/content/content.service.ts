@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as matter from 'gray-matter';
 import { markedExtended } from 'src/config/marked';
-import { recursiveReadDir } from 'src/util/util';
+import { recursiveReadDir } from 'src/shared/util/util';
 
 @Injectable()
 export class ContentService {

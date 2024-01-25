@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ContentsService } from './contents.service';
-import { ContentFileData } from 'src/type/content';
+import { ContentFileData } from 'src/shared/type/content';
 
 @Controller('contents')
 export class ContentsController {

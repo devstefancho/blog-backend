@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as path from 'path';
-import { ContentFileData, FrontMatter } from 'src/type/content';
-import { getFrontMatter, recursiveReadDir } from 'src/util/util';
+import { ContentFileData, FrontMatter } from 'src/shared/type/content';
+import { recursiveReadDir, getFrontMatter } from 'src/shared/util/util';
 
 @Injectable()
 export class ContentsService {

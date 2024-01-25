@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as matter from 'gray-matter';
-import { ContentFileData, FrontMatter } from 'src/type/content';
+import { ContentFileData, FrontMatter } from '../type/content';
 
 export const recursiveReadDir = async (
   entry: string,
