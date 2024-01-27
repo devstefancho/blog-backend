@@ -3,7 +3,8 @@ export type FrontMatter = {
   id: string;
   slug: string;
   title: string;
-  description: string;
+  summary: string;
+  toc: boolean;
   tags: string[];
   categories: string[];
   createdDate: string;
