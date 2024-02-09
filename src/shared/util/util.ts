@@ -5,6 +5,7 @@ import { ContentFileData, FrontMatter } from '../type/content';
 
 export const recursiveReadDir = async (
   entry: string,
+  excerptSize?: number,
 ): Promise<ContentFileData[]> => {
   const results: ContentFileData[] = [];
 
@@ -31,9 +32,10 @@ export const recursiveReadDir = async (
         const _fileData = fs.readFileSync(fullPath, 'utf8');
         const parsedData = matter(_fileData);
         const frontMatter = parsedData.data as FrontMatter;
-        const excerpt = frontMatter.published
-          ? generateExcerpt(parsedData.content, 'large')
-          : '';
+        const excerpt =
+          excerptSize && frontMatter.published
+            ? generateExcerpt(parsedData.content, excerptSize)
+            : '';
 
         const fileData = {
           path: fullPath,
@@ -56,26 +58,16 @@ export const getFrontMatter = (fullPath: string): FrontMatter => {
   return data as FrontMatter;
 };
 
-const excerptSizeMap = {
-  small: 90,
-  medium: 150,
-  large: 210,
-} as const;
-
 /**
  * Generate excerpt from content
  * @param content - markdown string excluding frontmatter
  * @param excerptSize - size of excerpt
  * @returns generated excerpt string
  */
-export const generateExcerpt = (
-  content: string,
-  excerptSize: keyof typeof excerptSizeMap = 'small',
-) => {
+export const generateExcerpt = (content: string, excerptSize: number) => {
   const contentNoTitle = content.replace(/# .+\n/, '');
   const contentNoHeading = contentNoTitle.replace(/#+/, '');
   const contentNoLineBreak = contentNoHeading.replace(/\n/g, '');
-  const size = excerptSizeMap[excerptSize];
-  const excerpt = contentNoLineBreak.slice(0, size);
+  const excerpt = contentNoLineBreak.slice(0, excerptSize);
   return excerpt;
 };

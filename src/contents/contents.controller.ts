@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ContentsService } from './contents.service';
 import { ContentFileData } from 'src/shared/type/content';
 
@@ -7,7 +7,9 @@ export class ContentsController {
   constructor(private readonly contentsService: ContentsService) {}
 
   @Get()
-  findAll(): Promise<ContentFileData[]> {
-    return this.contentsService.findAll();
+  findAll(
+    @Query('excerpt_size') excerpt_size: string,
+  ): Promise<ContentFileData[]> {
+    return this.contentsService.findAll(Number(excerpt_size) || 120);
   }
 }

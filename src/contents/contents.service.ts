@@ -5,10 +5,12 @@ import { recursiveReadDir, getFrontMatter } from 'src/shared/util/util';
 
 @Injectable()
 export class ContentsService {
-  async findAll(): Promise<(ContentFileData & { frontMatter: FrontMatter })[]> {
+  async findAll(
+    excerptSize: number,
+  ): Promise<(ContentFileData & { frontMatter: FrontMatter })[]> {
     try {
       const filePath = path.join(process.cwd(), 'data');
-      const files = await recursiveReadDir(filePath);
+      const files = await recursiveReadDir(filePath, excerptSize);
       const publishedFiles = files
         .map((file) => ({
           ...file,
